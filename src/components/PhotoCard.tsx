@@ -10,7 +10,7 @@ export default function PhotoCard(props: Props) {
   return (
     <View>
       <Image
-        source={{ uri: photo.url }}
+        source={{ uri: photo.thumbnailUrl }}
         style={{
           width: '100%',
           height: height,
