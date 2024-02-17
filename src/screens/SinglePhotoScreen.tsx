@@ -2,7 +2,7 @@ import { Image, View, Text } from 'react-native';
 import React from 'react';
 import type { Photo } from '../components/ImageGallery';
 
-import PhotoCard from '../components/PhotoCard';
+// import PhotoCard from '../components/PhotoCard';
 
 export default function SinglePhotoScreen(props: any) {
   let photo = props.route.params as Photo;
@@ -19,6 +19,9 @@ export default function SinglePhotoScreen(props: any) {
         className="mb-6"
       />
       <Text>{photo.title}</Text>
+
+      {/* Created a component. However the image is not showing in this screen. It works in ImageGallery */}
+
       {/* <PhotoCard
         photo={photo}
         height={250}

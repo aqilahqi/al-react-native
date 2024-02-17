@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { View, Text, Button, Pressable } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import PhotoScreen from '../screens/PhotoScreen';
 import SinglePhotoScreen from '../screens/SinglePhotoScreen';
