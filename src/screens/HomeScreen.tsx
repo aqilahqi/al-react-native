@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 function HomeScreen() {
   return (

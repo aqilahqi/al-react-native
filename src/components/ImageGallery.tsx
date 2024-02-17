@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Image, Text, View, Alert, FlatList, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Photo from './PhotoCard';
 
-interface Photo {
+export interface Photo {
   id: string;
   title: string;
   url: string;
@@ -26,16 +27,10 @@ const PhotoCard = (props: Props) => {
       <Pressable
         onPress={() => navigation.navigate('SinglePhoto', { ...photo })}
       >
-        <Image
-          source={{ uri: photo.thumbnailUrl }}
-          style={{
-            position: 'relative',
-            width: '100%',
-            height: 250,
-            borderRadius: 20,
-          }}
+        <Photo
+          photo={photo}
+          height={250}
         />
-        <Text>{photo.title}</Text>
       </Pressable>
     </View>
   );

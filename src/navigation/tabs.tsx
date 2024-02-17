@@ -1,15 +1,18 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { View, Text } from 'react-native';
+import { View, Text, Button, Pressable } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import PhotoScreen from '../screens/PhotoScreen';
 import SinglePhotoScreen from '../screens/SinglePhotoScreen';
 
-import { HomeIcon, PhotoIcon } from 'react-native-heroicons/micro';
+import {
+  HomeIcon,
+  PhotoIcon,
+  ChevronLeftIcon,
+} from 'react-native-heroicons/micro';
+import { useNavigation } from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
 
 const screenOptions = {
   headerShown: true,
@@ -37,6 +40,7 @@ const screenOptions = {
 };
 
 const Tabs = () => {
+  const navigation = useNavigation();
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -78,6 +82,19 @@ const Tabs = () => {
         name="SinglePhoto"
         component={SinglePhotoScreen}
         options={{
+          headerShadowVisible: true,
+          headerShown: true,
+          headerLeft: () => (
+            <Pressable
+              onPress={() => navigation.navigate('Photos')}
+              className="pl-4"
+            >
+              <ChevronLeftIcon
+                color="#22223b"
+                size={28}
+              />
+            </Pressable>
+          ),
           tabBarItemStyle: {
             display: 'none',
           },
