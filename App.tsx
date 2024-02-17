@@ -1,25 +1,14 @@
 // In App.js in a new project
 
-import * as React from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Tabs from './src/navigation/tabs';
 
-import HomeScreen from './src/screens/HomeScreen';
-import WelcomeScreen from './src/screens/WelcomeScreen';
-
-const Stack = createNativeStackNavigator();
-
-const screenOptions = {
-  headerShown: false
-}
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Welcome' screenOptions={screenOptions}>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Welcome" component={WelcomeScreen} />
-      </Stack.Navigator>
+      <Tabs />
     </NavigationContainer>
   );
 }
