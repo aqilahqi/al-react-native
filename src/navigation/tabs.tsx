@@ -18,9 +18,7 @@ const screenOptions = {
     left: 20,
     borderRadius: 15,
     height: 90,
-    padding: 0,
-    alignSelf: 'center',
-    flexDirection: 'row',
+    paddingTop: 24,
   },
 };
 
@@ -35,12 +33,12 @@ const Tabs = () => {
         component={HomeScreen}
         options={{
           tabBarIcon: () => (
-            <View className="text-center">
+            <View className="flex-1 items-center">
               <HomeIcon
-                color="#4a4e69"
+                color="#9a8c98"
                 size={28}
               />
-              <Text>Home</Text>
+              <Text className="text-[#9a8c98] text-xs">Home</Text>
             </View>
           ),
         }}
@@ -51,10 +49,13 @@ const Tabs = () => {
         component={PhotoScreen}
         options={{
           tabBarIcon: () => (
-            <PhotoIcon
-              color="#4a4e69"
-              size={28}
-            />
+            <View className="flex-1 items-center">
+              <PhotoIcon
+                color="#9a8c98"
+                size={28}
+              />
+              <Text className="text-[#9a8c98] text-xs">Photos</Text>
+            </View>
           ),
         }}
       />
