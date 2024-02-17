@@ -8,7 +8,14 @@ import { HomeIcon, PhotoIcon } from 'react-native-heroicons/micro';
 const Tab = createBottomTabNavigator();
 
 const screenOptions = {
-  headerShown: false,
+  headerShown: true,
+  headerShadowVisible: false,
+  headerTitle: '',
+  headerStyle: {
+    backgroundColor: '#f2e9e4',
+    borderWidth: 0,
+    borderColor: '#f5ebe0',
+  },
   tabBarShowLabel: false,
   tabBarStyle: {
     backgroundColor: '#fff',
@@ -19,6 +26,7 @@ const screenOptions = {
     borderRadius: 15,
     height: 90,
     paddingTop: 24,
+    borderTopColor: '#fff',
   },
 };
 
