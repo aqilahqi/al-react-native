@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Image, Text, View, Alert, FlatList } from 'react-native';
-import MasonryList from '@react-native-seoul/masonry-list';
+import { Image, Text, View, Alert, FlatList, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 interface Photo {
   id: string;
@@ -17,21 +17,26 @@ interface Props {
 
 const PhotoCard = (props: Props) => {
   const { photo } = props;
+  const navigation = useNavigation();
   return (
     <View
       className="mb-4"
       style={{ position: 'relative', flexShrink: 1, width: '48%' }}
     >
-      <Image
-        source={{ uri: photo.thumbnailUrl }}
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: 250,
-          borderRadius: 20,
-        }}
-      />
-      <Text>{photo.title}</Text>
+      <Pressable
+        onPress={() => navigation.navigate('SinglePhoto', { ...photo })}
+      >
+        <Image
+          source={{ uri: photo.thumbnailUrl }}
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: 250,
+            borderRadius: 20,
+          }}
+        />
+        <Text>{photo.title}</Text>
+      </Pressable>
     </View>
   );
 };
@@ -41,7 +46,6 @@ const ImageGallery = () => {
 
   useEffect(() => {
     fetchImages();
-    console.log('useEffect is working');
   }, []);
 
   const fetchImages = async () => {
@@ -49,7 +53,6 @@ const ImageGallery = () => {
       .get('https://jsonplaceholder.typicode.com/photos')
       .then((response: any) => {
         setPhotos(response.data);
-        console.log('Photos fetched: ', response.data.length);
       })
       .catch((error: any) => Alert.alert(error));
   };
@@ -59,6 +62,11 @@ const ImageGallery = () => {
       <FlatList
         initialNumToRender={20}
         numColumns={2}
+        ListEmptyComponent={() => (
+          <View className="pt-10">
+            <Text className="text-center animate-spin">Loading photos...</Text>
+          </View>
+        )}
         columnWrapperStyle={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -72,29 +80,6 @@ const ImageGallery = () => {
           />
         )}
       />
-      {/* {photos.length > 0 &&
-          photos.map((photo, i) => (
-            <PhotoCard
-              photo={photo as Photo}
-              index={i}
-              key={photo.id}
-            />
-          ))} */}
-      {/* {photos.length > 0 && (
-        <MasonryList
-          data={photos}
-          keyExtractor={(item): string => item.id}
-          numColumns={2}
-          showsVerticalScrollIndicator={false}
-          renderItem={({ item, i }) => (
-            <PhotoCard
-              photo={item as Photo}
-              index={i}
-            />
-          )}
-          onEndReachedThreshold={0.1}
-        />
-      )} */}
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import React from 'react';
 
 import ImageGallery from '../components/ImageGallery';
@@ -11,9 +11,7 @@ const PhotoScreen = () => {
         Start browsing through our collection of{' '}
         <Text className="font-bold text-4xl text-[#9a8c98]">images</Text>
       </Text>
-      <View>
-        <ImageGallery />
-      </View>
+      <ImageGallery />
     </ScrollView>
   );
 };

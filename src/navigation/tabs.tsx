@@ -1,11 +1,15 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import { View, Text } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import PhotoScreen from '../screens/PhotoScreen';
+import SinglePhotoScreen from '../screens/SinglePhotoScreen';
 
 import { HomeIcon, PhotoIcon } from 'react-native-heroicons/micro';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const screenOptions = {
   headerShown: true,
@@ -17,6 +21,8 @@ const screenOptions = {
     borderColor: '#f5ebe0',
   },
   tabBarShowLabel: false,
+  tabBarActiveTintColor: '#22223b',
+  tabBarInactiveTintColor: '#9a8c98',
   tabBarStyle: {
     backgroundColor: '#fff',
     position: 'absolute',
@@ -40,13 +46,13 @@ const Tabs = () => {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarIcon: () => (
+          tabBarIcon: ({ color }) => (
             <View className="flex-1 items-center">
               <HomeIcon
-                color="#9a8c98"
+                color={color}
                 size={28}
               />
-              <Text className="text-[#9a8c98] text-xs">Home</Text>
+              <Text className={`text-[${color}] text-xs`}>Home</Text>
             </View>
           ),
         }}
@@ -56,15 +62,25 @@ const Tabs = () => {
         name="Photos"
         component={PhotoScreen}
         options={{
-          tabBarIcon: () => (
+          tabBarIcon: ({ color }) => (
             <View className="flex-1 items-center">
               <PhotoIcon
-                color="#9a8c98"
+                color={color}
                 size={28}
               />
-              <Text className="text-[#9a8c98] text-xs">Photos</Text>
+              <Text className={`text-[${color}] text-xs`}>Photos</Text>
             </View>
           ),
+        }}
+      />
+
+      <Tab.Screen
+        name="SinglePhoto"
+        component={SinglePhotoScreen}
+        options={{
+          tabBarItemStyle: {
+            display: 'none',
+          },
         }}
       />
     </Tab.Navigator>
